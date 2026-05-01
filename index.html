@@ -1431,25 +1431,15 @@ function showResults(d) {
   ).join('');
 
   // WhatsApp link
-  const top3 = (d.leaks || []).slice(0, 3).map((l, i) => `${i + 1}. ${l.title}`).join('\n') || 'see file';
-  const summary = `Hi! I just completed your AI Business Audit.
+  const topIssue = d.leaks[0]?.title || 'see file';
+  const summary = `Hi! I just completed your AI Business Audit and wanted to share my results.
 
-— My Audit Snapshot —
 File #: ${fileNo}
 Business: ${subjectLabel}
 Estimated monthly leak: ~₹${formatINR(d.total)}
+Biggest issue flagged: ${topIssue}
 
-Top issues flagged:
-${top3}
-
-— A few quick things so you can help me better —
-1. Which of the issues above hurts the most right now? (just reply 1, 2 or 3)
-2. How long has this been a problem — weeks, months, or longer?
-3. What have you already tried to fix it?
-4. If this leak stopped tomorrow, what would you do with that money / time?
-5. Best time to jump on a quick 30-min call?
-
-Looking forward to figuring this out together.`;
+This is something I'd genuinely like to fix. Can we set up the free 30-min call to talk through it?`;
   const wa = `https://wa.me/917378691925?text=${encodeURIComponent(summary)}`;
   document.getElementById('whatsappCta').href = wa;
 
