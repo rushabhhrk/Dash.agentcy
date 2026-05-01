@@ -1431,16 +1431,26 @@ function showResults(d) {
   ).join('');
 
   // WhatsApp link
-  const summary = `Hi! I just took your AI Audit.
+  const top3 = (d.leaks || []).slice(0, 3).map((l, i) => `${i + 1}. ${l.title}`).join('\n') || 'see file';
+  const summary = `Hi! I just completed your AI Business Audit.
 
+— My Audit Snapshot —
 File #: ${fileNo}
 Business: ${subjectLabel}
 Estimated monthly leak: ~₹${formatINR(d.total)}
 
-Biggest issue flagged: ${d.leaks[0]?.title || 'see file'}
+Top issues flagged:
+${top3}
 
-I'd like to take you up on the free 30-min call to figure out how to fix this.`;
-  const wa = `https://wa.me/919999999999?text=${encodeURIComponent(summary)}`;
+— A few quick things so you can help me better —
+1. Which of the issues above hurts the most right now? (just reply 1, 2 or 3)
+2. How long has this been a problem — weeks, months, or longer?
+3. What have you already tried to fix it?
+4. If this leak stopped tomorrow, what would you do with that money / time?
+5. Best time to jump on a quick 30-min call?
+
+Looking forward to figuring this out together.`;
+  const wa = `https://wa.me/917378691925?text=${encodeURIComponent(summary)}`;
   document.getElementById('whatsappCta').href = wa;
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
